@@ -15,6 +15,6 @@ $(TARGET) : $(OBJS)
 	$(CC) -MMD -c $< $(CCFLAGS)
 
 clean:
-	rm $(TARGET)
+	$(RM) $(TARGET) $(OBJS) $(DEPS)
 
 -include $(DEPS)
