@@ -22,6 +22,13 @@ typedef struct partition {
 
 static const struct partition partition_table_ufs[] =
 {
+  /* Caution:
+   *   Entries from PART_XLOADER_A to PART_NVME (inclusive) shall not be
+   *   modified. They are correlated with xloader [1]. Changing of them
+   *   must be done together with xloader.
+   *
+   * [1]: https://github.com/96boards-hikey/tools-images-hikey960/blob/master/sec_xloader.img)
+   */
   {PART_XLOADER_A,        0,         2*1024,          UFS_PART_0},
   {PART_XLOADER_B,        0,         2*1024,          UFS_PART_1},
   {PART_PTABLE,           0,         1024,            UFS_PART_2},/* ptable          512K */
@@ -31,6 +38,8 @@ static const struct partition partition_table_ufs[] =
   {PART_XLOADER_RESERVED2,1536,      512,             UFS_PART_3},/* vrl backup      512K   sdd2*/
   {PART_FASTBOOT,         2*1024,      12*1024,       UFS_PART_3},/* fastboot      12M   sdd3 */
   {PART_NVME,             14*1024,   6*1024,          UFS_PART_3},/* nvme          6M    sdd4 */
+  /* Items above shall not be changed, unless you can update xloader simualtaneously. */
+
   {PART_FW_LPM3,          20*1024,  1024,            UFS_PART_3},/* mcuimage      1M    sdd5 */
   {PART_BOOT,             21*1024,  64*1024,         UFS_PART_3},/* boot          64M   sdd6 */
   {PART_DTS,              85*1024,  16*1024,         UFS_PART_3},/* dtimage       16M   sdd7 */
