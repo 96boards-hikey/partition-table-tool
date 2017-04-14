@@ -5,11 +5,16 @@ This is an independent tool with source code to generate partition table image (
 
 ## Usage
 Step 1: Edit ```struct partition partition_table_ufs[]``` in ```partition.h``` to define partition layout, names and sizes. Please also read Note 1 below.
+
 Step 2: Build the tool ```efipartition```.
+
 ```make```
+
 Step 3: Generate a partition image: ```ptable.img```.
+
 ```efipartition ptable.img```
-Step 4: Flash ptable.img to the board. Please make sure ptable.img is the first image being flash'ed. Refer to [tools-images-hikey960](https://github.com/96boards-hikey/tools-images-hikey960) to learn more about how ptable.img should be used together with other bootloader binaries.
+
+Step 4: Flash ```ptable.img``` to the board. Please make sure ```ptable.img``` is the first image being flash'ed. Refer to [tools-images-hikey960](https://github.com/96boards-hikey/tools-images-hikey960) to learn more about how ptable.img should be used together with other bootloader binaries.
 
 ## How it works
 Overall, ptable.img structure is as this:
