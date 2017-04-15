@@ -14,7 +14,22 @@ Step 3: Generate a partition image: ```ptable.img```.
 
 ```efipartition ptable.img```
 
-Step 4: Flash ```ptable.img``` to the board. Please make sure ```ptable.img``` is the first image being flash'ed. Refer to [tools-images-hikey960](https://github.com/96boards-hikey/tools-images-hikey960) to learn more about how ptable.img should be used together with other bootloader binaries.
+Step 4: Flash ptable.img to the board. Then flash other images.
+1) DIP 1 & 3 ON, DIP 2 OFF: put board into [fastboot mode](https://github.com/96boards-hikey/tools-images-hikey960/blob/master/README.md#step-1-materials-and-preperations),
+2) ```fastboot flash ptable ptable.img```
+3) Reboot the board. Power cycle it.
+4) Flash other images which has been impacted by ptable changes. As a super set, ideally, you'd better flash all these below:
+```
+# bootloader
+fastboot flash xloader ${IMG_FOLDER}/sec_xloader.img
+fastboot flash fastboot ${IMG_FOLDER}/fastboot.img
+
+# extra images
+fastboot flash nvme   ${IMG_FOLDER}/nvme.img
+fastboot flash fw_lpm3   ${IMG_FOLDER}/lpm3.img
+fastboot flash trustfirmware   ${IMG_FOLDER}/bl31.bin
+```
+5) Proceed to [OS installation](https://github.com/96boards-hikey/tools-images-hikey960/blob/master/README.md#step-5-explore-other-modes-proceed-to-os-installation). Read Note 2 below to learn how in case you need to rebuild OS and user land images.
 
 ## How it works
 Overall, ptable.img structure is as this:
@@ -54,4 +69,3 @@ In order to be more general, ptable.img is made to support both emmc and ufs. It
 
     * For Android, please change ```[AOSP]/device/linaro/hikey/hikey960/fstab.hikey960```
     * For Debian, please change ```/etc/fstab```
-
