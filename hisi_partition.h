@@ -52,4 +52,5 @@ enum {
 #define PART_XLOADER_A                 "xloader_a"
 #define PART_XLOADER_B                 "xloader_b"
 #define PART_FIP                       "fip"
+#define PART_RESERVED                  "reserved"
 #endif
