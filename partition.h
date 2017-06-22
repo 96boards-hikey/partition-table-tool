@@ -47,7 +47,7 @@ static const struct partition partition_table_ufs[] =
   {PART_SYSTEM,           371*1024,  4688*1024,       UFS_PART_3},/* system        4688M sdd10 */
   {PART_VENDOR,           5059*1024, 784*1024,        UFS_PART_3},/* vendor        784M  sdd11 */
   {PART_RESERVED,         5843*1024, 1024,            UFS_PART_3},/* reserved      1M    sdd12 */
-  {PART_USERDATA,         5844*1024, (4UL)*1024*1024, UFS_PART_3},/* userdata      4G    sdd13 */
+  {PART_USERDATA,         5844*1024, (24646UL)*1024,  UFS_PART_3},/* userdata      24G   sdd13 */
   {"0", 0, 0, 0},
 };
 
